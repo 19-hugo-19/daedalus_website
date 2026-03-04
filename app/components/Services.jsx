@@ -5,29 +5,49 @@ import styles from './Services.module.css'
 const services = [
   {
     num: '01',
-    title: 'Web Development',
-    desc: 'Custom-built websites and web applications crafted for performance, scalability, and lasting impact.',
-    items: ['Frontend & Backend Dev', 'Progressive Web Apps', 'E-Commerce Solutions', 'API Integration'],
+    title: 'The Problem',
+    desc: 'Most small business owners face the same frustrating wall when it comes to getting online.',
+    items: [
+      'Agencies are too expensive',
+      'DIY builders are confusing',
+      'No time to learn web design',
+      'Outdated or slow sites',
+      'Paying monthly forever',
+    ],
   },
   {
     num: '02',
-    title: 'Contract Work',
-    desc: 'Expert developers embedded into your team, delivering quality code on your timeline and your terms.',
-    items: ['Short & Long-term Contracts', 'Team Augmentation', 'Code Review & Audits', 'Technical Leadership'],
+    title: 'The Solution',
+    desc: 'We build clean, custom websites specifically designed for small businesses — without the complexity or the cost.',
+    items: [
+      'Modern & professional look',
+      'Loads fast on any device',
+      'Mobile responsive by default',
+      'Easy for you to update',
+      'No ongoing maintenance needed',
+    ],
   },
   {
     num: '03',
-    title: 'Digital Strategy',
-    desc: 'Strategic guidance to help your business navigate the digital landscape and outpace the competition.',
-    items: ['Technical Consulting', 'Architecture Planning', 'Performance Optimization', 'Stack Recommendations'],
+    title: 'What You Get',
+    desc: 'Every project includes everything you need to have a strong online presence from day one.',
+    items: [
+      'Custom landing page (minimum)',
+      'Mobile responsive design',
+      'SEO-ready structure',
+      'Contact form integration',
+      'Basic analytics setup',
+      'Training session',
+      'Full ownership',
+    ],
   },
 ]
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects Delivered' },
-  { value: 30, suffix: '+', label: 'Happy Clients' },
-  { value: 5, suffix: 'yr', label: 'Industry Experience' },
-  { value: 98, suffix: '%', label: 'Client Satisfaction' },
+  { value: 4, suffix: ' wks', label: 'Delivery Time' },
+  { value: 1, suffix: '×', label: 'One-Time Payment' },
+  { value: 100, suffix: '%', label: 'Yours to Own' },
+  { value: 0, suffix: ' contracts', label: 'No Monthly Fees' },
 ]
 
 function useCountUp(target, duration = 1200, start = false) {
@@ -66,8 +86,8 @@ function StatCard({ stat }) {
 export default function Services() {
   return (
     <section id="services" className={styles.services}>
-      <div className={styles.tag}>// 01 — Services</div>
-      <h2 className={styles.title}>What We Do</h2>
+      <div className={styles.tag}>// 01 — The Blueprint</div>
+      <h2 className={styles.title}>Simple by Design.</h2>
       <div className={styles.grid}>
         {services.map(s => (
           <div className={styles.card} key={s.num}>

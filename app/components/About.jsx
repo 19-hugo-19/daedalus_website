@@ -1,26 +1,29 @@
 import styles from './About.module.css'
 
 const features = [
-  { icon: '⚡', title: 'Fast Delivery', text: 'We ship quickly without sacrificing quality.' },
-  { icon: '🎯', title: 'Precise Craft', text: 'Every pixel and line of code is intentional.' },
-  { icon: '🔒', title: 'Reliable', text: 'Built-in accountability and transparent comms.' },
-  { icon: '🚀', title: 'Scalable', text: 'Code architected to grow with your business.' },
+  { icon: '⚒', title: 'Built from Scratch', text: 'Every site is custom-crafted, not assembled from templates.' },
+  { icon: '💸', title: 'Truly Affordable', text: 'Priced for small business budgets. No hidden fees.' },
+  { icon: '⚡', title: '4-Week Delivery', text: 'From brief to launch in four weeks or less.' },
+  { icon: '🔑', title: 'You Own It', text: 'Full control, no agency lock-in, no monthly dependency.' },
 ]
 
 export default function About() {
   return (
     <section id="about" className={styles.about}>
       <div>
-        <div className={styles.tag}>// 03 — About</div>
-        <h2 className={styles.title}>Built<br />Different.</h2>
+        <div className={styles.tag}>// 03 — The Craftsmen</div>
+        <h2 className={styles.title}>Who We<br />Are.</h2>
         <p className={styles.body}>
-          We are Icarus — a boutique web development studio that flies close to the edge of what&apos;s possible.
+          We are Daedalus — computer engineering students building practical, affordable websites for small businesses.
         </p>
         <p className={styles.body}>
-          Founded on the belief that great software is both science and art, we combine technical excellence with creative vision to deliver products that actually stand out. We don&apos;t just write code — we architect digital experiences that grow with your business.
+          We saw that many small business owners need a digital presence but can&apos;t afford agency prices or find DIY builders too confusing. So we built a simpler path.
         </p>
-        <p className={styles.tagline}>Small team. Big standards. No compromises.</p>
-        <a href="#contact" className={styles.cta}>Work With Us</a>
+        <p className={styles.body}>
+          Made for: small business owners, non-technical founders, and anyone who needs a clean online presence without the complexity or cost.
+        </p>
+        <p className={styles.tagline}>Crafted by students. Built for real business.</p>
+        <a href="#contact" className={styles.cta}>→ Request a Free Proposal</a>
       </div>
 
       <div className={styles.right}>

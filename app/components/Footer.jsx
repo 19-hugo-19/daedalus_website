@@ -5,15 +5,16 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div>
-          <div className={styles.logo}>ICARUS</div>
-          <div className={styles.tagline}>Currently Soaring.</div>
+          <div className={styles.logo}>DAEDALUS</div>
+          <div className={styles.tagline}>Crafting the web, simply.</div>
         </div>
         <div>
           <div className={styles.colTitle}>Company</div>
           <ul className={styles.links}>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#work">Work</a></li>
+            <li><a href="#services">The Blueprint</a></li>
+            <li><a href="#how">How It Works</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#contact">Get a Proposal</a></li>
           </ul>
         </div>
         <div>
@@ -33,7 +34,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.bottom}>
-        <div className={styles.copy}>© 2026 Icarus. All rights reserved.</div>
+        <div className={styles.copy}>© 2026 Daedalus. All rights reserved.</div>
         <div className={styles.made}>Made with <span>✦</span> and caffeine</div>
       </div>
     </footer>

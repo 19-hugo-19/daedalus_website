@@ -13,16 +13,16 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { label: 'Services', href: '#services' },
-    { label: 'Work', href: '#work' },
+    { label: 'Blueprint', href: '#services' },
+    { label: 'Process', href: '#how' },
     { label: 'About', href: '#about' },
-    { label: 'Contact Us', href: '#contact' },
+    { label: 'Get a Proposal', href: '#contact' },
   ]
 
   return (
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-        <a href="#home" className={styles.logo}>ICARUS</a>
+        <a href="#home" className={styles.logo}>DAEDALUS</a>
         <ul className={styles.links}>
           {links.map(l => (
             <li key={l.label}><a href={l.href}>{l.label}</a></li>

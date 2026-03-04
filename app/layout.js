@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'ICARUS — Web Development & Digital Solutions',
-  description: 'Custom web development & contract solutions for companies that refuse to settle.',
+  title: 'DAEDALUS — Websites for Small Businesses',
+  description: 'Simple, affordable websites for small businesses. Delivered in 4 weeks. One-time payment. You fully own it.',
 }
 
 export default function RootLayout({ children }) {

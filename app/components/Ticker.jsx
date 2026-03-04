@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react'
 import styles from './Ticker.module.css'
 
 const items = [
-  'WEB DEVELOPMENT', 'CONTRACT WORK', 'UI/UX DESIGN',
-  'DIGITAL STRATEGY', 'API INTEGRATION', 'PERFORMANCE',
+  'WEB DESIGN', 'MOBILE READY', 'SEO INCLUDED',
+  'CONTACT FORMS', 'FAST LOADING', '4-WEEK DELIVERY',
+  'ONE-TIME PAYMENT', 'FULL OWNERSHIP',
 ]
 
 export default function Ticker() {
