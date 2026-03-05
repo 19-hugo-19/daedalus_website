@@ -2,20 +2,21 @@
   position: fixed;
   bottom: 36px;
   right: 36px;
-  width: 110px;
-  height: 110px;
+  width: 140px;
+  height: 140px;
   z-index: 50;
   pointer-events: none;
 }
 
+/* The entire SVG (text ring) rotates clockwise */
 .textRing {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   color: var(--accent);
-  opacity: 0.65;
-  animation: spin 22s linear infinite;
+  opacity: 0.72;
+  animation: spinCW 28s linear infinite;
 }
 
 .center {
@@ -26,30 +27,31 @@
   justify-content: center;
 }
 
+/* Gear counter-rotates so it appears to stay still or spin opposite */
 .gear {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   color: var(--accent);
-  opacity: 0.45;
-  animation: spinSlow 12s linear infinite;
+  opacity: 0.5;
+  animation: spinCCW 10s linear infinite;
 }
 
-@keyframes spin {
+@keyframes spinCW {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-@keyframes spinSlow {
+@keyframes spinCCW {
   from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  to   { transform: rotate(-360deg); }
 }
 
 @media (max-width: 768px) {
   .wrap {
     bottom: 20px;
     right: 20px;
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
   }
-  .gear { width: 24px; height: 24px; }
+  .gear { width: 30px; height: 30px; }
 }
