@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section id="home" className={styles.hero}>
       <div className={styles.tag}>// The Craftsman&apos;s Workshop</div>
-      <h1 className={styles.title}>YOUR WEBSITE,<br />BUILT RIGHT.</h1>
+      <h1 className={styles.title}>TINKERING,<br />WITH THE WEB.</h1>
       <p className={styles.sub}>
         Simple, affordable websites for small businesses.<br />
         Delivered in 4 weeks. One-time payment. Fully yours.

@@ -22,7 +22,7 @@ export default function Footer() {
           <ul className={styles.links}>
             <li><a href="#">GitHub</a></li>
             <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Email</a></li>
           </ul>
         </div>
         <div>
@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
       <div className={styles.bottom}>
         <div className={styles.copy}>© 2026 Daedalus. All rights reserved.</div>
-        <div className={styles.made}>Made with <span>✦</span> and caffeine</div>
+        <div className={styles.made}>Soaring with Icarus</div>
       </div>
     </footer>
   )
