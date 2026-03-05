@@ -35,7 +35,7 @@ export default function Footer() {
       </div>
       <div className={styles.bottom}>
         <div className={styles.copy}>© 2026 Daedalus. All rights reserved.</div>
-        <div className={styles.made}>Soaring with Icarus</div>
+        <div className={styles.made}>Architecture of endless possibility</div>
       </div>
     </footer>
   )
