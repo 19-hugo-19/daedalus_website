@@ -77,37 +77,70 @@ function StatCard({ stat, start }) {
   )
 }
 
+function useScrollReveal(threshold = 0.15) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [threshold])
+  return [ref, visible]
+}
+
 export default function Services() {
   const statsRef = useRef(null)
   const [startStats, setStartStats] = useState(false)
+  const [sectionRef, sectionVisible] = useScrollReveal(0.05)
 
   useEffect(() => {
     if (startStats || !statsRef.current) return
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStartStats(true)
-          observer.disconnect()
-        }
-      },
-      {
-        threshold: 0,
-        rootMargin: '0px 0px -30% 0px',
-      }
+      ([entry]) => { if (entry.isIntersecting) { setStartStats(true); observer.disconnect() } },
+      { threshold: 0, rootMargin: '0px 0px -30% 0px' }
     )
-
     observer.observe(statsRef.current)
     return () => observer.disconnect()
   }, [startStats])
 
   return (
-    <section id="services" className={styles.services}>
-      <div className={styles.tag}>// 01 — The Blueprint</div>
-      <h2 className={styles.title}>Simple by Design.</h2>
+    <section id="services" className={styles.services} ref={sectionRef}>
+      <div
+        className={styles.tag}
+        style={{
+          opacity: sectionVisible ? 1 : 0,
+          transform: sectionVisible ? 'none' : 'translateY(20px)',
+          transition: 'opacity 0.6s ease 0s, transform 0.6s ease 0s',
+        }}
+      >
+        // 01 — The Blueprint
+      </div>
+      <h2
+        className={styles.title}
+        style={{
+          opacity: sectionVisible ? 1 : 0,
+          transform: sectionVisible ? 'none' : 'translateY(20px)',
+          transition: 'opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s',
+        }}
+      >
+        Simple by Design.
+      </h2>
       <div className={styles.grid}>
-        {services.map(s => (
-          <div className={styles.card} key={s.num}>
+        {services.map((s, i) => (
+          <div
+            className={styles.card}
+            key={s.num}
+            style={{
+              opacity: sectionVisible ? 1 : 0,
+              transform: sectionVisible ? 'none' : 'translateY(30px)',
+              transition: `opacity 0.65s ease ${0.2 + i * 0.12}s, transform 0.65s ease ${0.2 + i * 0.12}s`,
+            }}
+          >
             <div className={styles.cardNum}>{s.num}</div>
             <h3 className={styles.cardTitle}>{s.title}</h3>
             <p className={styles.cardDesc}>{s.desc}</p>
@@ -118,7 +151,7 @@ export default function Services() {
         ))}
       </div>
       <div className={styles.btnWrapper}>
-        <Link href="/services" className={styles.btn}>
+        <Link href="/services" className={`${styles.btn} ${styles.btnAnimated}`}>
           Learn More
         </Link>
       </div>

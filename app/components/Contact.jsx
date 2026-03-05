@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './Contact.module.css'
 
 const faqs = [
@@ -9,19 +9,72 @@ const faqs = [
   { q: 'How much does it cost?', a: 'Pricing is custom based on your needs. Request a free proposal to get a quote.' },
 ]
 
+function useScrollReveal(threshold = 0.08) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [threshold])
+  return [ref, visible]
+}
+
+// Animated accordion answer panel
+function FaqAnswer({ open, children }) {
+  const ref = useRef(null)
+  const [height, setHeight] = useState(0)
+
+  useEffect(() => {
+    if (!ref.current) return
+    if (open) {
+      setHeight(ref.current.scrollHeight)
+    } else {
+      setHeight(0)
+    }
+  }, [open])
+
+  return (
+    <div
+      style={{
+        overflow: 'hidden',
+        height: `${height}px`,
+        transition: 'height 0.32s cubic-bezier(0.4,0,0.2,1)',
+      }}
+    >
+      <div ref={ref}>
+        {children}
+      </div>
+    </div>
+  )
+}
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', business: '', type: '', message: '' })
   const [sent, setSent] = useState(false)
   const [openFaq, setOpenFaq] = useState(null)
+  const [sectionRef, sectionVisible] = useScrollReveal(0.05)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
   const submit = e => { e.preventDefault(); setSent(true) }
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section id="contact" className={styles.contact} ref={sectionRef}>
 
       {/* ── Section header ── */}
-      <div className={styles.header}>
+      <div
+        className={styles.header}
+        style={{
+          opacity: sectionVisible ? 1 : 0,
+          transform: sectionVisible ? 'none' : 'translateY(24px)',
+          transition: 'opacity 0.6s ease 0s, transform 0.6s ease 0s',
+        }}
+      >
         <div className={styles.tag}>// 04 — The Workshop</div>
         <div className={styles.headerInner}>
           <div>
@@ -45,7 +98,14 @@ export default function Contact() {
       <div className={styles.contactRow}>
 
         {/* Left: info panel */}
-        <div className={styles.infoPanel}>
+        <div
+          className={styles.infoPanel}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateX(-20px)',
+            transition: 'opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s',
+          }}
+        >
           <div className={styles.infoBlock}>
             <div className={styles.infoLabel}>// Email</div>
             <a href="mailto:hello@icarus.dev" className={styles.infoValue}>hello@icarus.dev</a>
@@ -76,14 +136,21 @@ export default function Contact() {
         </div>
 
         {/* Right: form card */}
-        <div className={styles.formCard}>
+        <div
+          className={styles.formCard}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateX(20px)',
+            transition: 'opacity 0.65s ease 0.22s, transform 0.65s ease 0.22s',
+          }}
+        >
           <div className={styles.formCardHeader}>
             <span className={styles.formCardTitle}>Request a Free Proposal</span>
             <span className={styles.formCardNote}>Takes 2 minutes · No commitment</span>
           </div>
 
           {sent ? (
-            <div className={styles.success}>
+            <div className={styles.success} style={{ animation: 'fadeInUp 0.5s ease both' }}>
               <span className={styles.successIcon}>✦</span>
               <div>
                 <div className={styles.successTitle}>Proposal request received!</div>
@@ -136,7 +203,14 @@ export default function Contact() {
       </div>
 
       {/* ── FAQ row ── */}
-      <div className={styles.faqSection}>
+      <div
+        className={styles.faqSection}
+        style={{
+          opacity: sectionVisible ? 1 : 0,
+          transform: sectionVisible ? 'none' : 'translateY(24px)',
+          transition: 'opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s',
+        }}
+      >
         <div className={styles.faqHeader}>
           <div className={styles.faqTitle}>Common Questions</div>
           <div className={styles.faqSubtitle}>Everything you need to know before reaching out.</div>
@@ -149,14 +223,31 @@ export default function Contact() {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 <span>{f.q}</span>
-                <span className={styles.faqToggle}>{openFaq === i ? '−' : '+'}</span>
+                <span
+                  className={styles.faqToggle}
+                  style={{
+                    transform: openFaq === i ? 'rotate(45deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
+                    display: 'inline-block',
+                  }}
+                >
+                  +
+                </span>
               </button>
-              {openFaq === i && <div className={styles.faqA}>{f.a}</div>}
+              <FaqAnswer open={openFaq === i}>
+                <div className={styles.faqA}>{f.a}</div>
+              </FaqAnswer>
             </div>
           ))}
         </div>
       </div>
 
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </section>
   )
 }

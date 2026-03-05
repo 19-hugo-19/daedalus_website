@@ -125,3 +125,196 @@
 .ctaSecondary:hover {
   color: var(--text-primary);
 }
+
+/* ─────────────────────────────────────────────────
+   ANIMATION ADDITIONS — paste these into your
+   existing .module.css files as noted below.
+   ───────────────────────────────────────────────── */
+
+
+/* ══ Hero.module.css additions ══════════════════ */
+
+/* Shine sweep on primary CTA button */
+.btnPrimary {
+  position: relative;
+  overflow: hidden;
+}
+.btnShine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.12) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.btnPrimary:hover .btnShine {
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
+}
+
+/* Bouncing scroll indicator dot */
+.scrollDot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-right: 6px;
+  animation: scrollBounce 1.6s ease-in-out infinite;
+}
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+
+/* ══ Services.module.css additions ══════════════ */
+
+/* Card lift on hover */
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+
+/* Button arrow slide */
+.btnAnimated {
+  position: relative;
+  overflow: hidden;
+}
+.btnAnimated::after {
+  content: '→';
+  position: absolute;
+  right: -1.2em;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+.btnAnimated:hover::after {
+  right: 0.9em;
+  opacity: 1;
+}
+.btnAnimated:hover {
+  padding-right: 2.4em;
+  transition: padding-right 0.25s ease;
+}
+
+
+/* ══ Work.module.css additions ══════════════════ */
+
+/* Row slide-right on hover */
+.row {
+  transition: background 0.2s ease, padding-left 0.22s ease;
+}
+.row:hover {
+  padding-left: calc(var(--row-padding-left, 0px) + 8px);
+}
+
+/* Arrow nudge */
+.arrow {
+  transition: transform 0.22s ease;
+}
+.row:hover .arrow {
+  transform: translateX(6px);
+}
+
+/* Tag pill pop */
+.tag2 {
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.rowLink:hover .tag2 {
+  background: rgba(255,255,255,0.1);
+}
+
+
+/* ══ Contact.module.css additions ══════════════ */
+
+/* Input focus glow */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.15);
+  transition: box-shadow 0.2s ease;
+}
+
+/* Social link arrow nudge */
+.socialLink span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.socialLink:hover span {
+  transform: translate(2px, -2px);
+}
+
+/* Submit button shine */
+.submit {
+  position: relative;
+  overflow: hidden;
+}
+.submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+  transform: translateX(-100%);
+}
+.submit:hover::before {
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+/* FAQ item border highlight */
+.faqItem {
+  transition: border-color 0.2s ease;
+}
+.faqQ:hover {
+  opacity: 0.85;
+}
+
+/* Pulsing availability dot */
+.dot {
+  position: relative;
+}
+.dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.4;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1);   opacity: 0.4; }
+  50%       { transform: scale(2.2); opacity: 0; }
+}
+
+
+/* ══ About.module.css additions ══════════════════ */
+
+/* Feature card hover lift */
+.feature {
+  transition: transform 0.22s ease, background 0.22s ease;
+}
+.feature:hover {
+  transform: translateY(-3px);
+}
+
+/* Feature icon spin on hover */
+.featureIcon {
+  transition: transform 0.3s ease;
+}
+.feature:hover .featureIcon {
+  transform: rotate(12deg) scale(1.1);
+}
+
+/* CTA button arrow nudge */
+.cta {
+  transition: letter-spacing 0.2s ease, opacity 0.2s ease;
+}
+.cta:hover {
+  letter-spacing: 0.07em;
+}

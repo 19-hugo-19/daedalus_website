@@ -1,3 +1,5 @@
+'use client'
+import { useEffect, useRef, useState } from 'react'
 import styles from './About.module.css'
 
 const features = [
@@ -14,7 +16,6 @@ const features = [
     title: 'Truly Affordable',
     text: 'Priced for small business budgets. No hidden fees.',
     icon: (
-      // Dollar sign centered inside circle — vertical line stops inside circle bounds
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <line x1="12" y1="7" x2="12" y2="17" />
@@ -39,7 +40,6 @@ const features = [
     title: 'You Own It',
     text: 'Full control, no agency lock-in, no monthly dependency.',
     icon: (
-      // Horizontal key: circle bow on left, shaft goes right, two downward teeth
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="8" cy="12" r="4" />
         <line x1="12" y1="12" x2="22" y2="12" />
@@ -50,31 +50,99 @@ const features = [
   },
 ]
 
+function useScrollReveal(threshold = 0.1) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [threshold])
+  return [ref, visible]
+}
+
 export default function About() {
+  const [sectionRef, sectionVisible] = useScrollReveal(0.08)
+
   return (
-    <section id="about" className={styles.about}>
+    <section id="about" className={styles.about} ref={sectionRef}>
       <div>
-        <div className={styles.tag}>// 03 — The Craftsmen</div>
-        <h2 className={styles.title}>Who We<br />Are.</h2>
-        <p className={styles.body}>
-          We are Daedalus — computer engineering students building practical, affordable websites for small businesses.
+        <div
+          className={styles.tag}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateY(16px)',
+            transition: 'opacity 0.55s ease 0s, transform 0.55s ease 0s',
+          }}
+        >
+          // 03 — The Craftsmen
+        </div>
+        <h2
+          className={styles.title}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateY(20px)',
+            transition: 'opacity 0.6s ease 0.08s, transform 0.6s ease 0.08s',
+          }}
+        >
+          Who We<br />Are.
+        </h2>
+        {[
+          'We are Daedalus — computer engineering students building practical, affordable websites for small businesses.',
+          'We saw that many small business owners need a digital presence but can\'t afford agency prices or find DIY builders too confusing. So we built a simpler path.',
+          'Made for: small business owners, non-technical founders, and anyone who needs a clean online presence without the complexity or cost.',
+        ].map((text, i) => (
+          <p
+            key={i}
+            className={styles.body}
+            style={{
+              opacity: sectionVisible ? 1 : 0,
+              transform: sectionVisible ? 'none' : 'translateY(16px)',
+              transition: `opacity 0.55s ease ${0.18 + i * 0.1}s, transform 0.55s ease ${0.18 + i * 0.1}s`,
+            }}
+          >
+            {text}
+          </p>
+        ))}
+        <p
+          className={styles.tagline}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateY(14px)',
+            transition: 'opacity 0.55s ease 0.5s, transform 0.55s ease 0.5s',
+          }}
+        >
+          Crafted by students. Built for real business.
         </p>
-        <p className={styles.body}>
-          We saw that many small business owners need a digital presence but can&apos;t afford agency prices or find DIY builders too confusing. So we built a simpler path.
-        </p>
-        <p className={styles.body}>
-          Made for: small business owners, non-technical founders, and anyone who needs a clean online presence without the complexity or cost.
-        </p>
-        <p className={styles.tagline}>Crafted by students. Built for real business.</p>
-        <div className={styles.ctaGroup}>
+        <div
+          className={styles.ctaGroup}
+          style={{
+            opacity: sectionVisible ? 1 : 0,
+            transform: sectionVisible ? 'none' : 'translateY(14px)',
+            transition: 'opacity 0.55s ease 0.6s, transform 0.55s ease 0.6s',
+          }}
+        >
           <a href="/about" className={styles.ctaSecondary}>Learn More →</a>
           <a href="#contact" className={styles.cta}>→ Request a Free Proposal</a>
         </div>
       </div>
 
       <div className={styles.right}>
-        {features.map(f => (
-          <div className={styles.feature} key={f.title}>
+        {features.map((f, i) => (
+          <div
+            className={styles.feature}
+            key={f.title}
+            style={{
+              opacity: sectionVisible ? 1 : 0,
+              transform: sectionVisible ? 'none' : 'translateX(24px)',
+              transition: `opacity 0.6s ease ${0.2 + i * 0.12}s, transform 0.6s ease ${0.2 + i * 0.12}s`,
+            }}
+          >
             <div className={styles.featureIcon}>{f.icon}</div>
             <div className={styles.featureTitle}>{f.title}</div>
             <div className={styles.featureText}>{f.text}</div>
