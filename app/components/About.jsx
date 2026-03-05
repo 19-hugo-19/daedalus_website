@@ -66,7 +66,10 @@ export default function About() {
           Made for: small business owners, non-technical founders, and anyone who needs a clean online presence without the complexity or cost.
         </p>
         <p className={styles.tagline}>Crafted by students. Built for real business.</p>
-        <a href="#contact" className={styles.cta}>→ Request a Free Proposal</a>
+        <div className={styles.ctaGroup}>
+          <a href="/about" className={styles.ctaSecondary}>Learn More →</a>
+          <a href="#contact" className={styles.cta}>→ Request a Free Proposal</a>
+        </div>
       </div>
 
       <div className={styles.right}>

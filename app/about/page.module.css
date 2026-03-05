@@ -1,0 +1,888 @@
+/* =========================================
+   DAEDALUS — /about page.module.css
+   Uses globals.css variables & fonts
+   ========================================= */
+
+/* ---------- Base ---------- */
+.main {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 6vw 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.heroAnnotation {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 64px;
+  font-family: var(--font-mono);
+  /* animation state — overridden by .heroAnnotationIn */
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.heroAnnotationIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6vw;
+  align-items: center;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heroLabel {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-hover);
+  padding: 6px 12px;
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--font-mono);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.05s;
+}
+.heroLabelIn {
+  opacity: 1;
+}
+
+.heroTitle {
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.heroLine {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.heroLineIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.heroTitleAccent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 16px;
+  opacity: 0;
+  transform: translateX(16px);
+  transition: opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s;
+}
+.heroRightIn {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.heroLead {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.heroDivider {
+  width: 48px;
+  height: 1px;
+  background: var(--border-hover);
+}
+
+.heroSub {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.heroAccentLine {
+  position: absolute;
+  bottom: 0;
+  left: 6vw;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+.heroAccentLineIn {
+  width: 80px;
+}
+
+.heroScroll {
+  position: absolute;
+  bottom: 32px;
+  right: 6vw;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   MARQUEE
+   ========================================= */
+.marqueeWrapper {
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  padding: 14px 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marqueeItem {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding: 0 32px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* =========================================
+   SHARED SECTION STYLES
+   ========================================= */
+.section {
+  padding: 96px 6vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionAnnotation {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 56px;
+  font-family: var(--font-mono);
+}
+
+.sectionTitle {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 40px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.fullDivider {
+  height: 1px;
+  background: var(--border);
+}
+
+.bigNumber {
+  font-size: clamp(80px, 10vw, 140px);
+  font-weight: 700;
+  color: var(--bg-card);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  user-select: none;
+  font-family: var(--font-mono);
+}
+
+.storyIndex {
+  padding-top: 8px;
+}
+
+/* =========================================
+   STORY
+   ========================================= */
+.storyGrid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+.storyContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.storyBlocks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.storyBlock {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.storyBlock:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.storyBlockLabel {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.storyBlock p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+/* =========================================
+   BELIEFS
+   ========================================= */
+.beliefsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.beliefsHeader {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+.beliefCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.beliefCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+  display: flex;
+  gap: 20px;
+  align-items: start;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.beliefCard:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.beliefCardNum {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--border-hover);
+  letter-spacing: 0.1em;
+  padding-top: 2px;
+  min-width: 24px;
+  font-family: var(--font-mono);
+}
+
+.beliefCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.beliefCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.beliefCardBody {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+/* =========================================
+   TEAM
+   ========================================= */
+.teamGrid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+.teamContent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.teamLead {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.teamStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border);
+}
+
+.teamStat {
+  padding: 28px 20px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teamStat:last-child {
+  border-right: none;
+}
+
+.teamStatValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  transition: color 0.3s ease;
+}
+
+.teamStatLabel {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+}
+
+.teamTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.teamTag {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.teamTag:hover {
+  border-color: var(--border-hover);
+  color: var(--text-primary);
+}
+
+.teamTag::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.teamTag:hover::after {
+  transform: translateX(100%);
+}
+
+/* =========================================
+   CONNECT
+   ========================================= */
+.connect {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+}
+
+.connectLabel {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.connectCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.connectCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.connectCard:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.connectCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.connectInitial {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  background: var(--accent-dim);
+}
+
+.connectMeta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.connectName {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  letter-spacing: 0.02em;
+}
+
+.connectRole {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+.connectArrow {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.connectCard:hover .connectArrow {
+  color: var(--accent);
+  transform: translate(3px, -3px);
+}
+
+.connectDivider {
+  height: 1px;
+  background: var(--border);
+}
+
+.connectBio {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.connectFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.connectPlatform {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.connectTag {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+}
+
+/* =========================================
+   SCOPE
+   ========================================= */
+.scopeGrid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 6vw;
+  align-items: start;
+}
+
+.scopeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.scopeLead {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.scopeColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.scopeCol {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.scopeColLabel {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+}
+
+.scopeItemYes,
+.scopeItemNo {
+  font-size: 13px;
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-family: var(--font-sans);
+}
+
+.scopeItemYes {
+  color: var(--text-secondary);
+}
+
+.scopeItemNo {
+  color: var(--text-muted);
+}
+
+.scopeCheck {
+  color: var(--accent);
+  font-size: 12px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+.scopeX {
+  color: var(--border-hover);
+  font-size: 11px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   CTA
+   ========================================= */
+.cta {
+  padding: 120px 6vw;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "DAEDALUS";
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  font-size: clamp(80px, 14vw, 200px);
+  font-weight: 700;
+  color: var(--bg-card);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-mono);
+}
+
+.ctaInner {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+.ctaLabel {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.ctaTitle {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.ctaTitleAccent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.ctaBody {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.ctaButton {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.ctaButton:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.ctaButton:hover::after {
+  transform: translateX(0);
+}
+
+.ctaMeta {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   SCROLL REVEAL
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .heroScroll {
+    display: none;
+  }
+
+  .storyGrid,
+  .teamGrid,
+  .scopeGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .storyIndex {
+    display: none;
+  }
+
+  .storyBlocks {
+    grid-template-columns: 1fr;
+  }
+
+  .beliefsHeader {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .beliefCards {
+    grid-template-columns: 1fr;
+  }
+
+  .teamStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .teamStat:nth-child(2) {
+    border-right: none;
+  }
+
+  .teamStat:nth-child(3) {
+    border-top: 1px solid var(--border);
+  }
+
+  .teamStat:nth-child(4) {
+    border-top: 1px solid var(--border);
+    border-right: none;
+  }
+
+  .scopeColumns {
+    grid-template-columns: 1fr;
+  }
+
+  .connectCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 80px 5vw 60px;
+  }
+
+  .section {
+    padding: 64px 5vw;
+  }
+
+  .cta {
+    padding: 80px 5vw;
+  }
+
+  .teamStats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .teamStat {
+    border-right: 1px solid var(--border);
+    border-top: none;
+  }
+
+  .teamStat:nth-child(even) {
+    border-right: none;
+  }
+
+  .teamStat:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+}

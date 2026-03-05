@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import styles from './Services.module.css'
 
 const services = [
@@ -92,7 +93,6 @@ export default function Services() {
       },
       {
         threshold: 0,
-        // Trigger when the top of statsGrid crosses the viewport center line.
         rootMargin: '0px 0px -30% 0px',
       }
     )
@@ -116,6 +116,11 @@ export default function Services() {
             </ul>
           </div>
         ))}
+      </div>
+      <div className={styles.btnWrapper}>
+        <Link href="/services" className={styles.btn}>
+          Learn More
+        </Link>
       </div>
       <div className={styles.statsGrid} ref={statsRef}>
         {stats.map(s => <StatCard stat={s} key={s.label} start={startStats} />)}

@@ -39,16 +39,24 @@ export default function CustomCursor() {
       }
     }
 
-    window.addEventListener('mousemove', onMove)
-    document.addEventListener('mouseover', onOver)
-    document.addEventListener('mouseout', onOut)
+    // ✅ Inside useEffect so frame/animate are in scope
+    const onVisibility = () => {
+      if (document.hidden) cancelAnimationFrame(frame)
+      else frame = requestAnimationFrame(animate)
+    }
+
+    window.addEventListener('mousemove', onMove, { passive: true })
+    document.addEventListener('mouseover', onOver, { passive: true })
+    document.addEventListener('mouseout', onOut, { passive: true })
+    document.addEventListener('visibilitychange', onVisibility)
     frame = requestAnimationFrame(animate)
 
     return () => {
       cancelAnimationFrame(frame)
-      window.removeEventListener('mousemove', onMove)
-      document.removeEventListener('mouseover', onOver)
-      document.removeEventListener('mouseout', onOut)
+      window.removeEventListener('mousemove', onMove, { passive: true })
+      document.removeEventListener('mouseover', onOver, { passive: true })
+      document.removeEventListener('mouseout', onOut, { passive: true })
+      document.removeEventListener('visibilitychange', onVisibility) // ✅ Cleaned up properly
     }
   }, [])
 

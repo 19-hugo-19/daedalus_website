@@ -1,0 +1,582 @@
+/* =========================================
+   DAEDALUS — /services page.module.css
+   Uses globals.css variables & fonts
+   ========================================= */
+
+.main {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* ---- Fade-in animation ---- */
+.fadeIn {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fadeIn.visible {
+  opacity: 1;
+}
+
+/* ---- Shared tag label ---- */
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   HERO
+   ========================================= */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 8rem 6vw 5rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  gap: 2rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 20% 60%, var(--accent-dim) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: 700px;
+}
+
+.heroTitle {
+  font-family: var(--font-mono);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0.5rem 0 1.5rem;
+  color: var(--text-primary);
+}
+
+.heroTitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.heroSub {
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-sans);
+}
+
+.heroCta {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 0.8rem 1.8rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.heroCta:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.heroBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  padding: 2rem 2.5rem;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.heroBadge span {
+  font-family: var(--font-mono);
+  font-size: 4rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.heroBadge small {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   TICKER
+   ========================================= */
+.ticker {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  padding: 0.85rem 0;
+  white-space: nowrap;
+}
+
+.tickerTrack {
+  display: inline-flex;
+  gap: 0;
+  animation: ticker 30s linear infinite;
+}
+
+.tickerTrack span {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  padding: 0 2rem;
+  font-family: var(--font-mono);
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* =========================================
+   SERVICES SECTION
+   ========================================= */
+.servicesSection {
+  padding: 6rem 6vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionHeader {
+  margin-bottom: 4rem;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.4rem 0 1rem;
+}
+
+.sectionHeader p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  line-height: 1.7;
+  font-family: var(--font-sans);
+}
+
+/* --- Desktop sidebar layout --- */
+.servicesLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+}
+
+.serviceNav {
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceNavItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.5rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+.serviceNavItem:last-child {
+  border-bottom: none;
+}
+
+.serviceNavItem:hover {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.activeNav {
+  background: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-left: 2px solid var(--accent);
+}
+
+.navId {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  min-width: 28px;
+  font-family: var(--font-mono);
+}
+
+.activeNav .navId {
+  color: var(--accent);
+}
+
+.navTitle {
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  font-family: var(--font-sans);
+}
+
+/* --- Service detail panel --- */
+.serviceDetail {
+  position: relative;
+  min-height: 420px;
+}
+
+.serviceCard {
+  display: none;
+  padding: 2.5rem;
+  height: 100%;
+}
+
+.activeCard {
+  display: block;
+}
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.cardTag {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent-dim);
+  padding: 0.25rem 0.7rem;
+  font-family: var(--font-mono);
+}
+
+.cardId {
+  font-size: 3rem;
+  font-family: var(--font-mono);
+  color: var(--border);
+  line-height: 1;
+  user-select: none;
+}
+
+.cardTitle {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+}
+
+.cardDesc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 1.8rem;
+  max-width: 560px;
+  font-family: var(--font-sans);
+}
+
+.cardList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cardList li {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  line-height: 1.5;
+  font-family: var(--font-sans);
+}
+
+.bullet {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.cardNote {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  font-family: var(--font-mono);
+}
+
+/* --- Mobile cards --- */
+.mobileCards {
+  display: none;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 0;
+}
+
+.mobileCard {
+  background: var(--bg);
+  padding: 2rem 1.5rem;
+}
+
+/* =========================================
+   WHY SECTION
+   ========================================= */
+.whySection {
+  padding: 6rem 6vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.whyCard {
+  background: var(--bg);
+  padding: 2.5rem;
+  transition: background 0.2s;
+}
+
+.whyCard:hover {
+  background: var(--bg-secondary);
+}
+
+.whyNum {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-family: var(--font-mono);
+}
+
+.whyCard h3 {
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.8rem;
+}
+
+.whyCard p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+/* =========================================
+   COMPARISON TABLE
+   ========================================= */
+.comparisonSection {
+  padding: 6rem 6vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 500px;
+  font-family: var(--font-sans);
+}
+
+.table thead th {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  font-family: var(--font-mono);
+}
+
+.table thead th:first-child {
+  text-align: left;
+}
+
+.thDaedalus {
+  color: var(--accent) !important;
+  background: var(--bg-card) !important;
+}
+
+.table tbody td {
+  padding: 0.9rem 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.table tbody td:first-child {
+  text-align: left;
+  color: var(--text-secondary);
+}
+
+.tdDaedalus {
+  background: var(--bg-card);
+}
+
+.yes {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.no {
+  color: var(--border-hover);
+  font-size: 1rem;
+}
+
+/* =========================================
+   CTA SECTION
+   ========================================= */
+.ctaSection {
+  padding: 7rem 6vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.ctaSection h2 {
+  font-family: var(--font-mono);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.4rem 0;
+}
+
+.ctaSection p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 460px;
+  line-height: 1.7;
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.ctaBtn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  color: var(--bg);
+  background: var(--accent);
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.ctaBtn:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
+}
+
+.ctaMeta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6rem 6vw 4rem;
+    min-height: auto;
+  }
+
+  .heroBadge {
+    align-self: flex-start;
+  }
+
+  .whyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  .heroTitle {
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .servicesLayout {
+    display: none;
+  }
+
+  .mobileCards {
+    display: flex;
+  }
+
+  .heroBadge {
+    display: none;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 0.75rem 1rem;
+  }
+
+  .ctaSection {
+    padding: 5rem 6vw;
+  }
+
+  .whyCard {
+    padding: 1.8rem 1.4rem;
+  }
+}

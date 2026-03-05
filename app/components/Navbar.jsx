@@ -22,7 +22,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-        <a href="#home" className={styles.logo}>DAEDALUS</a>
+        <a href="/#home" className={styles.logo}>DAEDALUS</a>
         <ul className={styles.links}>
           {links.map(l => (
             <li key={l.label}><a href={l.href}>{l.label}</a></li>

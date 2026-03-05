@@ -45,19 +45,21 @@ export default function Work() {
 
       <div className={styles.projects}>
         {steps.map(s => (
-          <div className={styles.row} key={s.num}>
-            <div className={styles.num}>{s.num}</div>
-            <div>
-              <div className={styles.category}>{s.category}</div>
-              <h3 className={styles.projectTitle}>{s.title}</h3>
-              <p className={styles.desc}>{s.desc}</p>
-              <div className={styles.tags}>
-                {s.tags.map(t => <span className={styles.tag2} key={t}>{t}</span>)}
+          <a href='/#contact' key={s.num}>
+            <div className={styles.row}>
+                <div className={styles.num}>{s.num}</div>
+                <div>
+                  <div className={styles.category}>{s.category}</div>
+                  <h3 className={styles.projectTitle}>{s.title}</h3>
+                  <p className={styles.desc}>{s.desc}</p>
+                  <div className={styles.tags}>
+                    {s.tags.map(t => <span className={styles.tag2} key={t}>{t}</span>)}
+                  </div>
+                </div>
+                <div className={styles.arrow}>→</div>
               </div>
-            </div>
-            <div className={styles.arrow}>→</div>
-          </div>
-        ))}
+            </a>
+          ))}
       </div>
 
       <div className={styles.techItems}>
