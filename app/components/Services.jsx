@@ -66,17 +66,10 @@ function useCountUp(target, duration = 1200, start = false) {
   return count
 }
 
-function StatCard({ stat }) {
-  const ref = useRef(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true) }, { threshold: 0.5 })
-    if (ref.current) obs.observe(ref.current)
-    return () => obs.disconnect()
-  }, [])
-  const count = useCountUp(stat.value, 1200, visible)
+function StatCard({ stat, start }) {
+  const count = useCountUp(stat.value, 1200, start)
   return (
-    <div className={styles.statCard} ref={ref}>
+    <div className={styles.statCard}>
       <div className={styles.statNum}>{count}{stat.suffix}</div>
       <div className={styles.statLabel}>{stat.label}</div>
     </div>
@@ -84,6 +77,30 @@ function StatCard({ stat }) {
 }
 
 export default function Services() {
+  const statsRef = useRef(null)
+  const [startStats, setStartStats] = useState(false)
+
+  useEffect(() => {
+    if (startStats || !statsRef.current) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStartStats(true)
+          observer.disconnect()
+        }
+      },
+      {
+        threshold: 0,
+        // Trigger when the top of statsGrid crosses the viewport center line.
+        rootMargin: '0px 0px -30% 0px',
+      }
+    )
+
+    observer.observe(statsRef.current)
+    return () => observer.disconnect()
+  }, [startStats])
+
   return (
     <section id="services" className={styles.services}>
       <div className={styles.tag}>// 01 — The Blueprint</div>
@@ -100,8 +117,8 @@ export default function Services() {
           </div>
         ))}
       </div>
-      <div className={styles.statsGrid}>
-        {stats.map(s => <StatCard stat={s} key={s.label} />)}
+      <div className={styles.statsGrid} ref={statsRef}>
+        {stats.map(s => <StatCard stat={s} key={s.label} start={startStats} />)}
       </div>
     </section>
   )

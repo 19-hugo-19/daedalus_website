@@ -44,7 +44,7 @@ function getStarById(id) {
   return STARS.find(s => s.id === id)
 }
 
-export default function IntroAnimation({ onComplete }) {
+export default function IntroAnimation({ onComplete, onFadeStart }) {
   const [phase, setPhase] = useState('empty')
   const [visible, setVisible] = useState(true)
 
@@ -57,11 +57,12 @@ export default function IntroAnimation({ onComplete }) {
           return
         }
         setPhase(p.id)
+        if (p.id === 'exit') onFadeStart?.()
         await new Promise((r) => setTimeout(r, p.duration))
       }
     }
     sequence()
-  }, [])
+  }, [onComplete, onFadeStart])
 
   if (!visible && phase === 'done') return null
 

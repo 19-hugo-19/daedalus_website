@@ -16,7 +16,7 @@
   height: 100%;
   color: var(--accent);
   opacity: 0.72;
-  animation: spinCW 30s linear infinite;
+  animation: spinCW 35s linear infinite;
 }
 
 .center {
@@ -33,7 +33,7 @@
   height: 42px;
   color: var(--accent);
   opacity: 0.5;
-  animation: spinCCW 12s linear infinite;
+  animation: spinCCW 18s linear infinite;
 }
 
 @keyframes spinCW {
