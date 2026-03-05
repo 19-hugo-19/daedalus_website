@@ -1,0 +1,237 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s cubic-bezier(0.76, 0, 0.24, 1),
+              transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+  overflow: hidden;
+}
+
+/* Scan line effect */
+.overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.012) 2px,
+    rgba(255, 255, 255, 0.012) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.exiting {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+/* ── Greek key border (SVG inline via background) ── */
+.greekBorder {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  opacity: 0;
+  transition: opacity 0.8s ease 0.2s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.greekBorderVisible {
+  opacity: 1;
+}
+
+/* Greek key pattern on the four edges using repeating SVG */
+.greekBorder::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Cpath d='M0 16 L0 4 L4 4 L4 0 L16 0 L16 4 L20 4 L20 20 L4 20 L4 16 Z' fill='none' stroke='rgba(201,168,76,0.25)' stroke-width='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 20px 20px;
+  mask-image:
+    linear-gradient(to bottom, black 2px, transparent 2px),
+    linear-gradient(to top,    black 2px, transparent 2px),
+    linear-gradient(to right,  black 2px, transparent 2px),
+    linear-gradient(to left,   black 2px, transparent 2px);
+  mask-composite: add;
+  -webkit-mask-image:
+    linear-gradient(to bottom, black 2px, transparent 2px),
+    linear-gradient(to top,    black 2px, transparent 2px),
+    linear-gradient(to right,  black 2px, transparent 2px),
+    linear-gradient(to left,   black 2px, transparent 2px);
+  -webkit-mask-composite: source-over;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ── Constellation dots ── */
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.2s ease 0.4s;
+}
+
+.starsVisible {
+  opacity: 1;
+}
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: #c9a84c;
+  animation: starPulse var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes starPulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.7;  transform: scale(1.4); }
+}
+
+/* Constellation lines (SVG) */
+.constellationSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.4s ease 0.8s;
+}
+
+.constellationSvgVisible {
+  opacity: 1;
+}
+
+/* Progress bar */
+.progress {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: transparent;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  transition: width 3.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progressBarRunning {
+  width: 100%;
+}
+
+/* Center content */
+.center {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* DAEDALUS */
+.name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(52px, 12vw, 110px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #f0f0f0;
+  line-height: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.nameInner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.5s ease;
+}
+
+.nameInnerVisible {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* Gold underline */
+.line {
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.lineVisible {
+  width: 100%;
+}
+
+/* Subtitle */
+.subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(10px, 1.4vw, 13px);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  overflow: hidden;
+}
+
+.subtitleInner {
+  display: flex;
+  gap: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.subtitleInnerVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: pre;
+}
+
+.charIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Blinking cursor */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: #c9a84c;
+  margin-left: 6px;
+  vertical-align: text-bottom;
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

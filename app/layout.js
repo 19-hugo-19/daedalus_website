@@ -1,14 +1,18 @@
-import './globals.css'
+'use client'
 
-export const metadata = {
-  title: 'DAEDALUS — Websites for Small Businesses',
-  description: 'Simple, affordable websites for small businesses. Delivered in 4 weeks. One-time payment. You fully own it.',
-}
+import IntroAnimation from './components/IntroAnimation'
+import './globals.css'
+import { useState } from 'react'
 
 export default function RootLayout({ children }) {
+  const [introDone, setIntroDone] = useState(false)
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {!introDone && <IntroAnimation onComplete={() => setIntroDone(true)} />}
+        {children}
+      </body>
     </html>
   )
 }

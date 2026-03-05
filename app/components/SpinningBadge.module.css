@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 36px;
   right: 36px;
-  width: 140px;
-  height: 140px;
+  width: 110px;
+  height: 110px;
   z-index: 50;
   pointer-events: none;
 }
@@ -16,7 +16,7 @@
   height: 100%;
   color: var(--accent);
   opacity: 0.72;
-  animation: spinCW 28s linear infinite;
+  animation: spinCW 30s linear infinite;
 }
 
 .center {
@@ -33,7 +33,7 @@
   height: 42px;
   color: var(--accent);
   opacity: 0.5;
-  animation: spinCCW 10s linear infinite;
+  animation: spinCCW 12s linear infinite;
 }
 
 @keyframes spinCW {
