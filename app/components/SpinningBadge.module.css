@@ -1,0 +1,55 @@
+.wrap {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  width: 110px;
+  height: 110px;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.textRing {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--accent);
+  opacity: 0.65;
+  animation: spin 22s linear infinite;
+}
+
+.center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gear {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+  opacity: 0.45;
+  animation: spinSlow 12s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .wrap {
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+  }
+  .gear { width: 24px; height: 24px; }
+}

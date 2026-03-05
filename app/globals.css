@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  cursor: none !important;
 }
 
 :root {
@@ -44,5 +45,15 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 2px; }
 
 a { text-decoration: none; color: inherit; }
-button { cursor: pointer; font-family: var(--font-sans); }
+button { font-family: var(--font-sans); }
 input, textarea, select { font-family: var(--font-sans); }
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Restore cursor on touch devices */
+@media (hover: none) {
+  *, *::before, *::after { cursor: auto !important; }
+}
