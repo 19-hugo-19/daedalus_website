@@ -1,11 +1,12 @@
 import styles from './Footer.module.css'
+import DaedalusLogo from './DaedalusLogo'
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div>
-          <div className={styles.logo}>DAEDALUS</div>
+          <DaedalusLogo className={styles.logo} />
           <div className={styles.tagline}>Crafting the web, simply.</div>
         </div>
         <div>

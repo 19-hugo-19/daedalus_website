@@ -136,6 +136,30 @@
   width: 100%;
 }
 
+/* ── Intro gear ── */
+.introGearWrap {
+  opacity: 0;
+  transform: scale(0.5) rotate(-90deg);
+  transition: opacity 0.5s ease 0.1s,
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.introGearWrapVisible {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Inner SVG spins continuously — separate from the appear transition on the wrapper */
+.introGear {
+  display: block;
+  animation: introGearSpin 14s linear infinite;
+}
+
+@keyframes introGearSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
 /* Center content */
 .center {
   position: relative;

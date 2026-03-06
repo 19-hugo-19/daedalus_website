@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import styles from './Navbar.module.css'
+import DaedalusLogo from './DaedalusLogo'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -22,7 +23,9 @@ export default function Navbar() {
   return (
     <>
       <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-        <a href="/#home" className={styles.logo}>DAEDALUS</a>
+        <a href="/#home" className={styles.logo} aria-label="DAEDALUS — home">
+          <DaedalusLogo />
+        </a>
         <ul className={styles.links}>
           {links.map(l => (
             <li key={l.label}><a href={l.href}>{l.label}</a></li>
