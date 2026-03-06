@@ -136,28 +136,30 @@
   width: 100%;
 }
 
-/* ── Intro gear ── */
+/* ── Intro gear arc ── */
 .introGearWrap {
   opacity: 0;
-  transform: scale(0.5) rotate(-90deg);
+  transform: translateX(-16px) rotate(-20deg);
   transition: opacity 0.5s ease 0.1s,
-              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
 }
 
 .introGearWrapVisible {
   opacity: 1;
-  transform: scale(1) rotate(0deg);
+  transform: translateX(0) rotate(0deg);
 }
 
-/* Inner SVG spins continuously — separate from the appear transition on the wrapper */
+/* After sliding in, the gear gently rocks — like a gear clicking into mesh */
 .introGear {
   display: block;
-  animation: introGearSpin 14s linear infinite;
+  animation: introGearRock 3s ease-in-out 0.8s infinite;
 }
 
-@keyframes introGearSpin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes introGearRock {
+  0%   { transform: rotate(0deg); }
+  30%  { transform: rotate(6deg); }
+  60%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
 }
 
 /* Center content */
