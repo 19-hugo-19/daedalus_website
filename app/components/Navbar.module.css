@@ -17,16 +17,9 @@
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  height: 28px;
+  font-size: 17px;
   cursor: pointer;
   transition: opacity 0.2s;
-}
-
-.logo svg {
-  height: 28px;
-  width: auto;
 }
 
 .logo:hover {

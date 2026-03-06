@@ -1,0 +1,11 @@
+.root {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-primary, #f0f0f0);
+  white-space: nowrap;
+}
+
+.bracket {
+  color: var(--accent, #c9a84c);
+}

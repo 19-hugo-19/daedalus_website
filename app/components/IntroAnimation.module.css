@@ -136,30 +136,34 @@
   width: 100%;
 }
 
-/* ── Intro gear arc ── */
+/* ── Boot animation: name + spinning gear row ── */
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 2.5vw, 28px);
+}
+
 .introGearWrap {
   opacity: 0;
-  transform: translateX(-16px) rotate(-20deg);
-  transition: opacity 0.5s ease 0.1s,
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+  flex-shrink: 0;
+  transition: opacity 0.5s ease 0.4s;
 }
 
 .introGearWrapVisible {
   opacity: 1;
-  transform: translateX(0) rotate(0deg);
 }
 
-/* After sliding in, the gear gently rocks — like a gear clicking into mesh */
+/* Gear spins continuously while the boot screen is visible */
 .introGear {
   display: block;
-  animation: introGearRock 3s ease-in-out 0.8s infinite;
+  width: clamp(32px, 6vw, 68px);
+  height: clamp(32px, 6vw, 68px);
+  animation: introGearSpin 2s linear infinite;
 }
 
-@keyframes introGearRock {
-  0%   { transform: rotate(0deg); }
-  30%  { transform: rotate(6deg); }
-  60%  { transform: rotate(-4deg); }
-  100% { transform: rotate(0deg); }
+@keyframes introGearSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 /* Center content */
