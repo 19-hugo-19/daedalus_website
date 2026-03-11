@@ -116,7 +116,20 @@
 
 @media (max-width: 768px) {
   .services { padding: 80px 24px; }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    /* Stretch to full bleed so the 1px gap border aligns with page edge */
+    margin: 0 -24px;
+  }
+  .statCard {
+    padding: 32px 12px;
+    text-align: center;      /* re-assert: inherited padding changes can shift alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* centres block children, not just text */
+    justify-content: center;
+  }
+  .statNum { font-size: 36px; }
 }
 
 .btnWrapper {

@@ -25,31 +25,18 @@ function useScrollReveal(threshold = 0.08) {
   return [ref, visible]
 }
 
-// Animated accordion answer panel
 function FaqAnswer({ open, children }) {
   const ref = useRef(null)
   const [height, setHeight] = useState(0)
 
   useEffect(() => {
     if (!ref.current) return
-    if (open) {
-      setHeight(ref.current.scrollHeight)
-    } else {
-      setHeight(0)
-    }
+    setHeight(open ? ref.current.scrollHeight : 0)
   }, [open])
 
   return (
-    <div
-      style={{
-        overflow: 'hidden',
-        height: `${height}px`,
-        transition: 'height 0.32s cubic-bezier(0.4,0,0.2,1)',
-      }}
-    >
-      <div ref={ref}>
-        {children}
-      </div>
+    <div style={{ overflow: 'hidden', height: `${height}px`, transition: 'height 0.32s cubic-bezier(0.4,0,0.2,1)' }}>
+      <div ref={ref}>{children}</div>
     </div>
   )
 }
@@ -96,8 +83,6 @@ export default function Contact() {
 
       {/* ── Contact row: info panel + form ── */}
       <div className={styles.contactRow}>
-
-        {/* Left: info panel */}
         <div
           className={styles.infoPanel}
           style={{
@@ -135,7 +120,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Right: form card */}
         <div
           className={styles.formCard}
           style={{
@@ -223,15 +207,13 @@ export default function Contact() {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 <span>{f.q}</span>
-                <span
-                  className={styles.faqToggle}
-                  style={{
-                    transform: openFaq === i ? 'rotate(45deg)' : 'rotate(0deg)',
-                    transition: 'transform 0.28s cubic-bezier(0.4,0,0.2,1)',
-                    display: 'inline-block',
-                  }}
-                >
-                  +
+                {/*
+                  Toggle circle — rotation is on an INNER span (.faqToggleIcon)
+                  so the circle's own position/size is never affected by transform.
+                  The open state is driven purely by CSS via .faqQOpen .faqToggleIcon.
+                */}
+                <span className={styles.faqToggle}>
+                  <span className={styles.faqToggleIcon}>+</span>
                 </span>
               </button>
               <FaqAnswer open={openFaq === i}>

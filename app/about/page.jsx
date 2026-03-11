@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import CustomCursor from "../components/CustomCursor"
 import Navbar from "../components/Navbar"
 import styles from "./page.module.css"
+import Footer from '../components/Footer'
 
 /* ── Animated counter hook ── */
 function useCounter(target, duration = 1400) {
@@ -389,6 +390,7 @@ export default function AboutPage() {
         </section>
 
       </main>
+      <Footer/>
     </>
   )
 }

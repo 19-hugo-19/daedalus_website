@@ -51,7 +51,7 @@ const stats = [
   { value: 0, suffix: ' contracts', label: 'No Monthly Fees' },
 ]
 
-function useCountUp(target, duration = 1200, start = false) {
+function useCountUp(target, duration = 600, start = false) {
   const [count, setCount] = useState(0)
   useEffect(() => {
     if (!start) return

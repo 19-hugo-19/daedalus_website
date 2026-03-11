@@ -51,7 +51,10 @@
   gap: 5px;
   background: none;
   border: none;
-  padding: 4px;
+  /* Larger touch target for mobile */
+  padding: 12px;
+  margin: -12px;
+  cursor: pointer;
 }
 
 .hamburger span {
@@ -62,20 +65,49 @@
   transition: all 0.3s;
 }
 
-.mobileMenu {
+/* Overlay behind menu — fades in/out */
+.overlay {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 99;
+  z-index: 101; /* above navbar */
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none; /* don't block navbar when invisible */
+  transition: opacity 0.3s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto; /* only intercept touches when visible */
+}
+
+/* Menu uses visibility + opacity instead of display:none
+   so CSS transitions actually work */
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 102; /* above overlay */
   background: var(--bg);
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 40px;
+  /* Hidden state */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  /* Prevent interaction when hidden */
+  pointer-events: none;
 }
 
 .mobileMenu.open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .mobileMenu a {
@@ -84,6 +116,8 @@
   letter-spacing: 0.05em;
   color: var(--text-primary);
   transition: color 0.2s;
+  /* Generous touch targets */
+  padding: 8px 16px;
 }
 
 .mobileMenu a:hover {
@@ -92,14 +126,16 @@
 
 .mobileClose {
   position: absolute;
-  top: 24px;
-  right: 32px;
+  top: 16px;
+  right: 24px;
   background: none;
   border: none;
   color: var(--text-primary);
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1;
   cursor: pointer;
+  /* Larger touch target */
+  padding: 12px;
 }
 
 @media (max-width: 768px) {
@@ -107,4 +143,5 @@
   .scrolled { padding: 14px 24px; }
   .links { display: none; }
   .hamburger { display: flex; }
+  .overlay { display: block; }
 }

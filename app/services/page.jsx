@@ -1,9 +1,10 @@
 "use client";
 
 import CustomCursor from "../components/CustomCursor";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import styles from "./page.module.css";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 
 const services = [
   {
@@ -120,7 +121,6 @@ const comparison = [
   { feature: "No tech skills needed", daedalus: true, agency: true, diy: false },
 ];
 
-// Returns a stable ref callback that observes the element for fade-in
 function useFadeIn() {
   const observer = useRef(null);
 
@@ -136,7 +136,10 @@ function useFadeIn() {
           }
         });
       },
-      { threshold: 0.1 }
+      // rootMargin pushes the trigger point slightly above the bottom of the
+      // viewport so elements animate in just before they're fully visible,
+      // and above-the-fold elements always fire on load.
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
     return observer.current;
   }
@@ -148,6 +151,14 @@ function useFadeIn() {
 
 export default function ServicesPage() {
   const [activeService, setActiveService] = useState(0);
+  // Controls the staggered hero entrance
+  const [heroReady, setHeroReady] = useState(false);
+
+  useEffect(() => {
+    // Tiny delay so the browser has painted before we start the animation
+    const t = requestAnimationFrame(() => setHeroReady(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
 
   const refSectionHeader = useFadeIn();
   const refWhyHeader     = useFadeIn();
@@ -155,7 +166,6 @@ export default function ServicesPage() {
   const refTableWrap     = useFadeIn();
   const refCta           = useFadeIn();
 
-  // Hooks must not be called inside loops — create a fixed array of refs
   const whyRefs = [useFadeIn(), useFadeIn(), useFadeIn(), useFadeIn()]; // eslint-disable-line react-hooks/rules-of-hooks
   const cardRefs = [                                                      // eslint-disable-line react-hooks/rules-of-hooks
     useFadeIn(), useFadeIn(), useFadeIn(), useFadeIn(),
@@ -168,24 +178,62 @@ export default function ServicesPage() {
       <Navbar />
       <main className={styles.main}>
 
-        {/* Hero */}
+        {/* Hero — staggered entrance driven by heroReady */}
         <section className={styles.hero}>
           <div className={styles.heroInner}>
-            <span className={styles.tag}>// The Blueprint</span>
-            <h1 className={styles.heroTitle}>
+            <span
+              className={styles.tag}
+              style={{
+                opacity: heroReady ? 1 : 0,
+                transform: heroReady ? "none" : "translateY(16px)",
+                transition: "opacity 0.55s ease 0.05s, transform 0.55s ease 0.05s",
+              }}
+            >
+              // The Blueprint
+            </span>
+            <h1
+              className={styles.heroTitle}
+              style={{
+                opacity: heroReady ? 1 : 0,
+                transform: heroReady ? "none" : "translateY(24px)",
+                transition: "opacity 0.65s ease 0.15s, transform 0.65s ease 0.15s",
+              }}
+            >
               What's <em>Inside</em>
               <br />
               Every Build.
             </h1>
-            <p className={styles.heroSub}>
+            <p
+              className={styles.heroSub}
+              style={{
+                opacity: heroReady ? 1 : 0,
+                transform: heroReady ? "none" : "translateY(20px)",
+                transition: "opacity 0.6s ease 0.28s, transform 0.6s ease 0.28s",
+              }}
+            >
               No packages. No tiers. No upsells. One project, everything included — delivered in 4
               weeks for a single one-time payment.
             </p>
-            <a href="/#contact" className={styles.heroCta}>
+            <a
+              href="/#contact"
+              className={styles.heroCta}
+              style={{
+                opacity: heroReady ? 1 : 0,
+                transform: heroReady ? "none" : "translateY(16px)",
+                transition: "opacity 0.55s ease 0.4s, transform 0.55s ease 0.4s",
+              }}
+            >
               → Request a Free Proposal
             </a>
           </div>
-          <div className={styles.heroBadge}>
+          <div
+            className={styles.heroBadge}
+            style={{
+              opacity: heroReady ? 1 : 0,
+              transform: heroReady ? "none" : "translateY(20px)",
+              transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+            }}
+          >
             <span>7</span>
             <small>services included<br />in every project</small>
           </div>
@@ -363,7 +411,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA */}
-        <section ref={refCta} className={`${styles.ctaSection}`}>
+        <section ref={refCta} className={`${styles.ctaSection} ${styles.fadeIn}`}>
           <span className={styles.tag}>// 04 — Next Step</span>
           <h2>Ready to Build?</h2>
           <p>
@@ -377,6 +425,7 @@ export default function ServicesPage() {
         </section>
 
       </main>
+      <Footer/>
     </>
   );
 }
