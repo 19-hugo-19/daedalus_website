@@ -54,7 +54,7 @@ export default function Home() {
         />
       )}
       <BackgroundAnimation />
-      <CustomCursor />
+      <CustomCursor visible={!introVisible} />
       <main>
         <Navbar />
         <Hero />
