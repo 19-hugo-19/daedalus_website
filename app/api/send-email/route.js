@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req) {
+  console.log("ENV CHECK:", JSON.stringify({
+  user: process.env.GMAIL_USER,
+  passSet: !!process.env.GMAIL_APP_PASSWORD
+  }))
   try {
     const body = await req.json();
     const { name, email, message } = body;
