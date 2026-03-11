@@ -161,7 +161,7 @@ export default function IntroAnimation({ onComplete, onFadeStart }) {
 
         {/* Subtitle */}
         <div className={styles.subtitle}>
-          <SubtitleChars active={showSubtitle} />
+          <SubtitleChars active={showSubtitle} exiting={isExiting} />
         </div>
 
       </div>
@@ -169,7 +169,7 @@ export default function IntroAnimation({ onComplete, onFadeStart }) {
   )
 }
 
-function SubtitleChars({ active }) {
+function SubtitleChars({ active, exiting }) {
   const text = 'WEB DEVELOPMENT'
   return (
     <div className={`${styles.subtitleInner} ${active ? styles.subtitleInnerVisible : ''}`}>
@@ -182,7 +182,8 @@ function SubtitleChars({ active }) {
           {char}
         </span>
       ))}
-      {active && <span className={styles.cursor} />}
+      {/* Hide cursor during exit so it doesn't look like the page is buffering */}
+      {active && !exiting && <span className={styles.cursor} />}
     </div>
   )
 }

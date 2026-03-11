@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react'
 import styles from './CustomCursor.module.css'
 
-export default function CustomCursor() {
+export default function CustomCursor({ visible = true }) {
   const dotRef = useRef(null)
   const ringRef = useRef(null)
 
@@ -62,8 +62,8 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div className={styles.dot} ref={dotRef} />
-      <div className={styles.ring} ref={ringRef}>
+      <div className={`${styles.dot} ${!visible ? styles.hidden : ''}`} ref={dotRef} />
+      <div className={`${styles.ring} ${!visible ? styles.hidden : ''}`} ref={ringRef}>
         <div className={styles.crossH} />
         <div className={styles.crossV} />
       </div>
