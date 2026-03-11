@@ -43,12 +43,37 @@ function FaqAnswer({ open, children }) {
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', business: '', type: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
+  const [errorMsg, setErrorMsg] = useState('')
   const [openFaq, setOpenFaq] = useState(null)
   const [sectionRef, sectionVisible] = useScrollReveal(0.05)
 
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
-  const submit = e => { e.preventDefault(); setSent(true) }
+
+  const submit = async e => {
+    e.preventDefault()
+    setStatus('loading')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Something went wrong.')
+      }
+
+      setStatus('success')
+      setForm({ name: '', email: '', business: '', type: '', message: '' })
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err.message || 'Something went wrong. Please try again.')
+    }
+  }
 
   return (
     <section id="contact" className={styles.contact} ref={sectionRef}>
@@ -133,7 +158,7 @@ export default function Contact() {
             <span className={styles.formCardNote}>Takes 2 minutes · No commitment</span>
           </div>
 
-          {sent ? (
+          {status === 'success' ? (
             <div className={styles.success} style={{ animation: 'fadeInUp 0.5s ease both' }}>
               <span className={styles.successIcon}>✦</span>
               <div>
@@ -177,9 +202,16 @@ export default function Contact() {
                 <label htmlFor="message">Tell Us About Your Project</label>
                 <textarea id="message" name="message" value={form.message} onChange={handle} required placeholder="What does your business do? What do you need from your website? Any budget or timeline in mind?" />
               </div>
-              <button type="submit" className={styles.submit}>
-                <span>Send My Proposal Request</span>
-                <span className={styles.submitArrow}>→</span>
+
+              {status === 'error' && (
+                <div className={styles.errorMsg}>
+                  ⚠ {errorMsg}
+                </div>
+              )}
+
+              <button type="submit" className={styles.submit} disabled={status === 'loading'}>
+                <span>{status === 'loading' ? 'Sending…' : 'Send My Proposal Request'}</span>
+                {status !== 'loading' && <span className={styles.submitArrow}>→</span>}
               </button>
             </form>
           )}
@@ -207,11 +239,6 @@ export default function Contact() {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
                 <span>{f.q}</span>
-                {/*
-                  Toggle circle — rotation is on an INNER span (.faqToggleIcon)
-                  so the circle's own position/size is never affected by transform.
-                  The open state is driven purely by CSS via .faqQOpen .faqToggleIcon.
-                */}
                 <span className={styles.faqToggle}>
                   <span className={styles.faqToggleIcon}>+</span>
                 </span>
