@@ -8,7 +8,7 @@ export async function POST(req) {
   }))
   try {
     const body = await req.json();
-    const { name, email, message } = body;
+    const { name, email, business, type: industry, message } = body;
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -35,6 +35,8 @@ export async function POST(req) {
           <h2 style="color: #111;">New Contact Form Submission</h2>
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          ${business ? `<p><strong>Business Name:</strong> ${business}</p>` : ''}
+          ${industry ? `<p><strong>Company Industry:</strong> ${industry}</p>` : ''}
           <p><strong>Message:</strong></p>
           <p style="background: #f9f9f9; padding: 16px; border-radius: 6px; white-space: pre-wrap;">${message}</p>
         </div>
