@@ -21,9 +21,9 @@ export default function Footer() {
         <div>
           <div className={styles.colTitle}>Connect</div>
           <ul className={styles.links}>
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Email</a></li>
+            <li><a href="/about">GitHub</a></li>
+            <li><a href="/about">LinkedIn</a></li>
+            <li><a href="/about">Email</a></li>
           </ul>
         </div>
         <div>

@@ -118,7 +118,7 @@ export default function Contact() {
         >
           <div className={styles.infoBlock}>
             <div className={styles.infoLabel}>// Email</div>
-            <a href="mailto:hello@icarus.dev" className={styles.infoValue}>hello@icarus.dev</a>
+            <a href="mailto:daedalusweb0@gmail.com" className={styles.infoValue}>daedalusweb0@gmail.com</a>
           </div>
           <div className={styles.infoBlock}>
             <div className={styles.infoLabel}>// Based in</div>
@@ -138,9 +138,8 @@ export default function Contact() {
           <div className={styles.socialsBlock}>
             <div className={styles.infoLabel}>// Follow</div>
             <div className={styles.socials}>
-              <a href="#" className={styles.socialLink}>Github <span>↗</span></a>
-              <a href="#" className={styles.socialLink}>LinkedIn <span>↗</span></a>
-              <a href="#" className={styles.socialLink}>Twitter <span>↗</span></a>
+              <a href="/about" className={styles.socialLink}>Github <span>↗</span></a>
+              <a href="/about" className={styles.socialLink}>LinkedIn <span>↗</span></a>
             </div>
           </div>
         </div>

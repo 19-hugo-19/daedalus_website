@@ -258,48 +258,63 @@ export default function AboutPage() {
                 <Reveal delay={160}>
                 <div className={styles.connect}>
                     <div className={styles.connectLabel}>// Connect with us</div>
+
+                    {/* Contact Us + Our Work */}
+                    <div className={styles.connectInfoRow}>
+                      <div className={styles.connectInfoBlock}>
+                        <div className={styles.connectInfoBlockLabel}>Contact Us</div>
+                        <a href="mailto:daedalusweb0@gmail.com" className={styles.connectInfoLink}>daedalusweb0@gmail.com ↗</a>
+                      </div>
+                      <div className={styles.connectInfoBlock}>
+                        <div className={styles.connectInfoBlockLabel}>Our Work</div>
+                        <a href="https://github.com/19-hugo-19" target="_blank" rel="noopener noreferrer" className={styles.connectInfoLink}>GitHub ↗</a>
+                      </div>
+                    </div>
+
+                    {/* Find Us */}
+                    <div className={styles.connectSubLabel}>// Find Us</div>
                     <div className={styles.connectCards}>
-                    <a href="https://www.linkedin.com/in/hugopelletier1/" target="_blank" rel="noopener noreferrer" className={styles.connectCard}>
+                    <div className={styles.connectCard}>
                         <div className={styles.connectCardHeader}>
                         <div className={styles.connectInitial}>H</div>
                         <div className={styles.connectMeta}>
                             <div className={styles.connectName}>Hugo Pelletier</div>
                             <div className={styles.connectRole}>Co-Founder · Computer Engineering</div>
                         </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles.connectArrow}>
-                            <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                        </svg>
                         </div>
                         <div className={styles.connectDivider} />
                         <p className={styles.connectBio}>
                             Writes the code that holds everything together. Drawn to clean logic, solid architecture, and solutions that just work — without the noise.
                         </p>
                         <div className={styles.connectFooter}>
-                        <span className={styles.connectPlatform}>LinkedIn ↗</span>
+                        <div className={styles.connectLinks}>
+                            <a href="https://www.linkedin.com/in/hugopelletier1/" target="_blank" rel="noopener noreferrer" className={styles.connectLink}>LinkedIn ↗</a>
+                            <a href="https://github.com/19-hugo-19" target="_blank" rel="noopener noreferrer" className={styles.connectLink}>GitHub ↗</a>
+                        </div>
                         <span className={styles.connectTag}>Backend · Systems</span>
                         </div>
-                    </a>
+                    </div>
 
-                    <a href="https://www.linkedin.com/in/%C3%A9douard-b%C3%A9langer-352b24284/" target="_blank" rel="noopener noreferrer" className={styles.connectCard}>
+                    <div className={styles.connectCard}>
                         <div className={styles.connectCardHeader}>
                         <div className={styles.connectInitial}>É</div>
                         <div className={styles.connectMeta}>
                             <div className={styles.connectName}>Édouard Bélanger</div>
                             <div className={styles.connectRole}>Co-Founder · Computer Engineering</div>
                         </div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={styles.connectArrow}>
-                            <path d="M7 17L17 7M17 7H7M17 7v10"/>
-                        </svg>
                         </div>
                         <div className={styles.connectDivider} />
                         <p className={styles.connectBio}>
                             Thinks in systems and aesthetics equally. If it loads fast but looks off, it's not done. Believes the best interfaces are the ones nobody notices.
                         </p>
                         <div className={styles.connectFooter}>
-                        <span className={styles.connectPlatform}>LinkedIn ↗</span>
+                        <div className={styles.connectLinks}>
+                            <a href="https://www.linkedin.com/in/%C3%A9douard-b%C3%A9langer-352b24284/" target="_blank" rel="noopener noreferrer" className={styles.connectLink}>LinkedIn ↗</a>
+                            <a href="https://github.com/edouard8766" target="_blank" rel="noopener noreferrer" className={styles.connectLink}>GitHub ↗</a>
+                        </div>
                         <span className={styles.connectTag}>Frontend · Design</span>
                         </div>
-                    </a>
+                    </div>
                     </div>
                 </div>
                 </Reveal>

@@ -589,6 +589,69 @@
   padding: 4px 10px;
 }
 
+.connectInfoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.connectInfoBlock {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.connectInfoBlockLabel {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.connectInfoLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.connectInfoLink:hover {
+  color: var(--accent);
+}
+
+.connectSubLabel {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.connectLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.connectLink {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.connectLink:hover {
+  opacity: 0.7;
+}
+
 /* =========================================
    SCOPE
    ========================================= */
@@ -852,6 +915,10 @@
   }
 
   .connectCards {
+    grid-template-columns: 1fr;
+  }
+
+  .connectInfoRow {
     grid-template-columns: 1fr;
   }
 }
